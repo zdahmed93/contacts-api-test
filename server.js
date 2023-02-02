@@ -1,8 +1,11 @@
 const express = require('express')
 const dotenv = require('dotenv')
+const bodyParser = require('body-parser')
 
 dotenv.config()
 const app = express()
+
+app.use(bodyParser.json())
 
 let contacts = [
   {
@@ -45,6 +48,16 @@ app.get('/contacts/:id', (req, res) => {
     return
   }
   res.json(contact)
+})
+
+app.post('/contacts', (req, res) => {
+  console.log("CHECK:", req.body)
+  const contactData = {
+    id: Math.round(Math.random()*10000).toString(),
+    ...req.body
+  }
+  contacts.push(contactData)
+  res.status(201).json({message: 'Contact created successfully'})
 })
 
 const PORT = process.env.PORT
