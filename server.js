@@ -36,6 +36,17 @@ app.get('/contacts', (req, res) => {
   res.json(contacts)
 })
 
+app.get('/contacts/:id', (req, res) => {
+  console.log(req.params);
+  const contactId = req.params.id
+  const contact = contacts.find(c => c.id === contactId)
+  if (!contact) {
+    res.status(404).json({ error: 'Contact not found' })
+    return
+  }
+  res.json(contact)
+})
+
 const PORT = process.env.PORT
 
 app.listen(PORT, (error) => {
