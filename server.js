@@ -60,6 +60,12 @@ app.post('/contacts', (req, res) => {
   res.status(201).json({message: 'Contact created successfully'})
 })
 
+app.delete('/contacts/:id', (req, res) => {
+  const contactToDeleteId = req.params.id
+  contacts = contacts.filter(c => c.id !== contactToDeleteId)
+  res.json({ message: 'Contact deleted successfully' })
+})
+
 const PORT = process.env.PORT
 
 app.listen(PORT, (error) => {
