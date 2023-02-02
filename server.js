@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const bodyParser = require('body-parser')
-
+// CRUD: Create Read Update Delete
 dotenv.config()
 const app = express()
 
@@ -64,6 +64,13 @@ app.delete('/contacts/:id', (req, res) => {
   const contactToDeleteId = req.params.id
   contacts = contacts.filter(c => c.id !== contactToDeleteId)
   res.json({ message: 'Contact deleted successfully' })
+})
+
+app.put('/contacts/:id', (req, res) => {
+  const contactId = req.params.id
+  const newData = req.body
+  contacts = contacts.map(c => (c.id === contactId) ? {...c, ...newData} : c)
+  res.json({ message: 'Contact updated successfully' })
 })
 
 const PORT = process.env.PORT
