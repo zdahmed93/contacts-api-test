@@ -32,7 +32,7 @@ let contacts = [
 ]
 
 app.get('/', (req, res) => {
-  res.json({ message: 'Welcome to the Contacts API' })
+  res.json({ message: process.env.NAME })
 })
 
 app.get('/contacts', (req, res) => {
