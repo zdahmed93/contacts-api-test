@@ -10,7 +10,7 @@ app.use(bodyParser.json())
 let contacts = [
   {
     id: '1',
-    name: 'Wassim',
+    name: 'Wassim 2',
     phone: '+216 58484811',
     email: 'wassim@gmail.com'
   }, {
